@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitalsFlow - Clinical Portal & Diagnostics Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid-overlay"></div>
+
+    <!-- Navigation Header -->
+    <header class="app-header">
+        <div class="header-container">
+            <a href="#" class="brand" id="nav-brand">
+                <svg class="brand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                    <p> My name </p>
+                </svg>
+                <span class="brand-text">VitalsFlow</span>
+            </a>
+            <nav class="nav-links">
+                <button class="nav-link active" id="btn-nav-onboarding">Service Flow</button>
+                <button class="nav-link" id="btn-nav-signin">Access Portal</button>
+                <button class="nav-link locked" id="btn-nav-patient-dashboard" disabled>
+                    Patient Dash
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </button>
+                <button class="nav-link locked" id="btn-nav-staff-board" disabled>
+                    Staff Board
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </button>
+                <button class="nav-link locked" id="btn-nav-doctor-board" disabled>
+                    Doctor Board
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </button>
+            </nav>
+            <div class="header-status">
+                <span class="status-indicator"></span>
+                <span class="status-label">Clinical Server: Online</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <!-- Left Panel: Content & Views -->
+        <main class="panel-container">
+            
+            <!-- VIEW 1: Service Onboarding & Process -->
+            <section id="view-onboarding" class="view-section active">
+                <div class="stepper-bar">
+                    <div class="stepper-line"><div class="stepper-line-fill" id="onboarding-progress"></div></div>
+                    <div class="stepper-node active" data-step="0">01</div>
+                    <div class="stepper-node" data-step="1">02</div>
+                    <div class="stepper-node" data-step="2">03</div>
+                    <div class="stepper-node" data-step="3">04</div>
+                    <div class="stepper-node" data-step="4">05</div>
+                </div>
+
+                <div class="onboarding-content-container">
+                    <!-- Step 0: Welcome -->
+                    <div class="onboarding-step active" id="step-0">
+                        <span class="step-meta">Introduction</span>
+                        <h2 class="step-heading">In-Home Medical Care & Virtual Consults</h2>
+                        <p class="step-body">
+                            VitalsFlow bridges the gap between digital medical consulting and tactile clinical examination. We dispatch trained clinical staff directly to your home. They coordinate face-to-face virtual doctor consultations, collect lab samples, and return to deliver prescriptions.
+                        </p>
+                        
+                        <div class="form-card">
+                            <h3 class="form-card-title">Initiate Profile Verification</h3>
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="reg-name">Patient Full Name</label>
+                                    <input type="text" id="reg-name" placeholder="e.g. Eleanor Vance">
+                                </div>
+                                <div class="form-field">
+                                    <label for="reg-zip">ZIP / Postal Code</label>
+                                    <input type="text" id="reg-zip" placeholder="e.g. 10001" maxlength="6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Dispatch -->
+                    <div class="onboarding-step" id="step-1">
+                        <span class="step-meta">Phase 01 &bull; Staff Dispatch</span>
+                        <h2 class="step-heading">Trained Medical Assistant Dispatched</h2>
+                        <p class="step-body">
+                            Skip the clinic waiting room. Once requested, a certified clinical associate leaves our local regional center equipped with a Vitals Diagnostic Kit to check your physical symptoms.
+                        </p>
+                        <div class="info-card">
+                            <div class="info-card-row">
+                                <span class="info-label">Assigned Practitioner</span>
+                                <span class="info-val">Nurse Sarah Jenkins, RN</span>
+                            </div>
+                            <div class="info-card-row">
+                                <span class="info-label">Equipped Diagnostics</span>
+                                <span class="info-val">ECG, Blood Pressure, SpO2, Temp</span>
+                            </div>
+                            <div class="info-card-row">
+                                <span class="info-label">Transit Status</span>
+                                <span class="info-val highlight">En Route (ETA: 8 mins)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Consultation -->
+                    <div class="onboarding-step" id="step-2">
+                        <span class="step-meta">Phase 02 &bull; Consultation</span>
+                        <h2 class="step-heading">Real-Time Doctor Video Consultation</h2>
+                        <p class="step-body">
+                            While in your home, the nurse establishes a secure video feed to an available doctor. The nurse conducts physical readings in real time, transmitting diagnostic data directly to the doctor to guide your diagnosis.
+                        </p>
+                        
+                        <div class="consultation-card">
+                            <div class="consultation-header">
+                                <span class="badge-consulting">DR. ADRIAN VANCE, MD</span>
+                                <span class="consult-timer">Disconnected</span>
+                            </div>
+                            <div class="consultation-wave-area">
+                                <div class="wave-ring"></div>
+                                <div class="wave-ring"></div>
+                            </div>
+                            <div class="consultation-controls">
+                                <button class="btn-consult-call" id="btn-toggle-consult">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                    <span>Establish Video Link</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Sample Collection -->
+                    <div class="onboarding-step" id="step-3">
+                        <span class="step-meta">Phase 03 &bull; Lab Collection</span>
+                        <h2 class="step-heading">In-Home Diagnostic Sample Collection</h2>
+                        <p class="step-body">
+                            If the doctor orders lab work, our nurse draws blood, saliva, or swabs in the comfort of your home. Samples are immediately sealed with barcoded medical tags and placed in temperature-controlled transport units.
+                        </p>
+                        
+                        <div class="checklist-card">
+                            <h3 class="checklist-title">Sample Custody Chain</h3>
+                            <ul class="checklist-list">
+                                <li class="checklist-li" id="check-item-1" onclick="toggleDashboardCheck(1)">
+                                    <div class="custom-chk">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    <span>Draw diagnostics samples (CBC / CMP)</span>
+                                </li>
+                                <li class="checklist-li" id="check-item-2" onclick="toggleDashboardCheck(2)">
+                                    <div class="custom-chk">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    <span>Affix clinical barcode tracking code</span>
+                                </li>
+                                <li class="checklist-li" id="check-item-3" onclick="toggleDashboardCheck(3)">
+                                    <div class="custom-chk">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    <span>Secure in clinical temperature-control kit</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Delivery -->
+                    <div class="onboarding-step" id="step-4">
+                        <span class="step-meta">Phase 04 &bull; Diagnostics & Pharmacy</span>
+                        <h2 class="step-heading">Results Uploaded & Rx Delivered</h2>
+                        <p class="step-body">
+                            Your samples are expedited to our local laboratory, processed, and uploaded to your secure patient portal. The nurse returns to your address to deliver physical prescriptions and clinical printouts.
+                        </p>
+                        
+                        <div class="info-card">
+                            <div class="info-card-row">
+                                <span class="info-label">Prescription Dispatch</span>
+                                <span class="info-val">Verified & Sealed at Hub Pharmacy</span>
+                            </div>
+                            <div class="info-card-row">
+                                <span class="info-label">Delivery Schedule</span>
+                                <span class="info-val">Same-day courier routing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Onboarding Success -->
+                    <div class="onboarding-step" id="step-5">
+                        <div class="success-screen">
+                            <div class="success-icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </div>
+                            <h2 class="step-heading">Onboarding Verified</h2>
+                            <p class="step-body" id="success-message">
+                                Your account profile is successfully authorized. You are ready to log in and access your patient portal dashboard.
+                            </p>
+                            <button class="btn btn-primary" id="btn-success-login" style="margin-top: 1.5rem; width: 100%;">
+                                Login to Patient Portal
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="onboarding-controls" id="onboarding-footer">
+                    <button class="btn btn-secondary" id="btn-step-prev" disabled>Back</button>
+                    <button class="btn btn-primary" id="btn-step-next">Next Step</button>
+                </div>
+            </section>
+
+            <!-- VIEW 2: Sign In Portal -->
+            <section id="view-signin" class="view-section">
+                <span class="step-meta">Clinical Authentication</span>
+                <h2 class="step-heading">Authenticate Secure Portal</h2>
+                
+                <!-- Role selection tabs -->
+                <div class="auth-role-tabs">
+                    <button class="auth-role-tab active" data-role="patient">Patient Portal</button>
+                    <button class="auth-role-tab" data-role="staff">Field Staff</button>
+                    <button class="auth-role-tab" data-role="doctor">Physician</button>
+                </div>
+
+                <p class="step-body" id="signin-desc">
+                    Enter your medical ID credentials below to view clinical metrics, schedule visits, and access lab reports.
+                </p>
+                
+                <form id="signin-form" class="portal-form">
+                    <div class="form-field">
+                        <label for="login-email" id="login-email-label">Patient Email Address</label>
+                        <input type="email" id="login-email" placeholder="e.g. eleanor@vance.com" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="login-password">Security Password</label>
+                        <input type="password" id="login-password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" required>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked>
+                            <span>Remember clinical ID</span>
+                        </label>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="btn-auth-submit" style="margin-top: 1rem;">Authenticate Access</button>
+                    
+                    <div class="form-switch-notice">
+                        <span>New patient?</span>
+                        <a href="#" id="link-switch-onboarding">Complete onboarding process</a>
+                    </div>
+                </form>
+            </section>
+
+            <!-- VIEW 3: Patient Dashboard -->
+            <section id="view-dashboard" class="view-section">
+                <div class="dashboard-header">
+                    <div>
+                        <span class="step-meta">Diagnostic Portal</span>
+                        <h2 class="step-heading" id="dashboard-welcome-name">Patient: Eleanor Vance</h2>
+                    </div>
+                    <button class="btn-logout" id="btn-patient-logout" title="Exit portal">Sign Out</button>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dash-col">
+                        <!-- Patient Vitals Card -->
+                        <div class="dash-card">
+                            <div class="dash-card-header">
+                                <h3 class="dash-card-title">Vitals (Recorded by Staff)</h3>
+                            </div>
+                            <div class="vitals-stats">
+                                <div class="vital-stat-box">
+                                    <span class="vital-name">Blood Pressure</span>
+                                    <span class="vital-value" id="dash-bp">118/76 <span class="vital-unit">mmHg</span></span>
+                                    <span class="vital-status optimal" id="dash-bp-status">Normal</span>
+                                </div>
+                                <div class="vital-stat-box">
+                                    <span class="vital-name">Heart Rate</span>
+                                    <span class="vital-value" id="dash-hr">68 <span class="vital-unit">bpm</span></span>
+                                    <span class="vital-status optimal" id="dash-hr-status">Normal</span>
+                                </div>
+                                <div class="vital-stat-box">
+                                    <span class="vital-name">SpO2 (Oxygen)</span>
+                                    <span class="vital-value" id="dash-spo2">99 <span class="vital-unit">%</span></span>
+                                    <span class="vital-status optimal" id="dash-spo2-status">Excellent</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Physician Diagnosis & Guidance Card -->
+                        <div class="dash-card">
+                            <div class="dash-card-header">
+                                <h3 class="dash-card-title">Physician Diagnosis & Guidance</h3>
+                            </div>
+                            <div class="clinical-assessment-content">
+                                <div class="assess-row">
+                                    <span class="assess-label">Patient Health Status</span>
+                                    <span class="assess-val-badge normal" id="dash-patient-status">Optimal / Normal</span>
+                                </div>
+                                <div class="assess-row-block">
+                                    <span class="assess-label">Formal Diagnosis</span>
+                                    <p class="assess-text" id="dash-diagnosis-text">No diagnoses recorded. Awaiting clinical consultation review.</p>
+                                </div>
+                                <div class="assess-row-block">
+                                    <span class="assess-label">Prescribed Medications</span>
+                                    <p class="assess-text" id="dash-prescriptions-text">No active pharmacy prescriptions authorized.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dash-col">
+                        <div class="dash-card">
+                            <div class="dash-card-header">
+                                <h3 class="dash-card-title">Diagnostic Lab Reports</h3>
+                            </div>
+                            <div class="reports-table-wrapper">
+                                <table class="reports-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Report Name</th>
+                                            <th>Date Released</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="reports-list-body">
+                                        <!-- Populated via app.js -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Detail Modal Overlay -->
+                <div class="report-modal-overlay" id="report-modal">
+                    <div class="report-modal-content">
+                        <div class="modal-header">
+                            <div>
+                                <h4 class="modal-title" id="modal-report-title">Complete Blood Count (CBC)</h4>
+                                <span class="modal-subtitle" id="modal-report-date">Date: June 28, 2026</span>
+                            </div>
+                            <button class="modal-close-btn" id="btn-close-report-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="report-summary-clinical">
+                                <div class="clinical-summary-box">
+                                    <span>Physician</span>
+                                    <strong>Dr. Adrian Vance, MD</strong>
+                                </div>
+                                <div class="clinical-summary-box">
+                                    <span>Laboratory</span>
+                                    <strong>VitalsFlow Central Lab</strong>
+                                </div>
+                                <div class="clinical-summary-box">
+                                    <span>Status</span>
+                                    <strong id="modal-report-status">Normal</strong>
+                                </div>
+                            </div>
+                            <div class="results-grid-container">
+                                <table class="results-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Test Metric</th>
+                                            <th>Value</th>
+                                            <th>Reference Range</th>
+                                            <th>Assessment Indicator</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="results-table-body">
+                                        <!-- Dynamically populated -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" onclick="alert('Downloading signed PDF report to local system...')">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                Download Signed PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 4: Field Staff Board -->
+            <section id="view-staff" class="view-section">
+                <div class="dashboard-header">
+                    <div>
+                        <span class="step-meta">Field Staff Board</span>
+                        <h2 class="step-heading">In-Home Care Dispatch Console</h2>
+                    </div>
+                    <button class="btn-logout" id="btn-staff-logout" title="Exit portal">Sign Out</button>
+                </div>
+
+                <!-- SUB-VIEW 4A: Staff Patient queue List (Default) -->
+                <div id="staff-patient-list-container" class="dashboard-grid">
+                    <div class="dash-card" style="width: 100%;">
+                        <div class="dash-card-title">Assigned Home-Visit Queue</div>
+                        <div class="reports-table-wrapper">
+                            <table class="reports-table">
+                                <thead>
+                                    <tr>
+                                        <th>Patient Name</th>
+                                        <th>Postal Code</th>
+                                        <th>Logistics Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="staff-queue-body">
+                                    <!-- Populated via app.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUB-VIEW 4B: Selected Home Visit Workspace (Vitals & Sample Logs) -->
+                <div id="staff-visit-workspace" class="dashboard-grid" style="display: none;">
+                    <button class="btn-logout" id="btn-staff-back-to-list" style="border-color: var(--primary); color: var(--primary); align-self: flex-start; margin-bottom: 1rem;">
+                        &larr; Back to Assigned Queue
+                    </button>
+                    
+                    <div class="dash-col">
+                        <div class="dash-card">
+                            <div class="dash-card-title">Active Patient File</div>
+                            <div class="info-card-row">
+                                <span class="info-label">Patient Name</span>
+                                <strong id="staff-patient-name-label">Eleanor Vance</strong>
+                            </div>
+                            <div class="info-card-row">
+                                <span class="info-label">Postal Coverage</span>
+                                <strong id="staff-patient-zip-label">ZIP Code: 10001</strong>
+                            </div>
+                            <div class="info-card-row">
+                                <span class="info-label">Task Action</span>
+                                <span class="info-val highlight">Record Vitals & Secure Samples</span>
+                            </div>
+                        </div>
+
+                        <div class="dash-card">
+                            <div class="dash-card-title">Record Patient Vitals</div>
+                            <form id="staff-vitals-form">
+                                <div class="form-row">
+                                    <div class="form-field">
+                                        <label for="staff-bp-sys">Systolic BP (mmHg)</label>
+                                        <input type="number" id="staff-bp-sys" placeholder="e.g. 120" required>
+                                    </div>
+                                    <div class="form-field">
+                                        <label for="staff-bp-dia">Diastolic BP (mmHg)</label>
+                                        <input type="number" id="staff-bp-dia" placeholder="e.g. 80" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-field">
+                                        <label for="staff-hr">Heart Rate (bpm)</label>
+                                        <input type="number" id="staff-hr" placeholder="e.g. 72" required>
+                                    </div>
+                                    <div class="form-field">
+                                        <label for="staff-spo2">SpO2 (Oxygen %)</label>
+                                        <input type="number" id="staff-spo2" placeholder="e.g. 98" min="0" max="100" required>
+                                    </div>
+                                </div>
+                                <div class="form-field">
+                                    <label for="staff-temp">Temperature (°F)</label>
+                                    <input type="number" id="staff-temp" step="0.1" placeholder="e.g. 98.6" required>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="dash-col">
+                        <div class="dash-card">
+                            <div class="dash-card-title">Lab Sample Tracking</div>
+                            <div class="form-field">
+                                <label>Draw Checklist</label>
+                                <ul class="checklist-list" style="margin-top: 0.5rem;">
+                                    <li class="checklist-li" id="staff-chk-cbc" onclick="toggleStaffDrawCheck('cbc')">
+                                        <div class="custom-chk">
+                                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        </div>
+                                        <span>Blood Draw (CBC) Vial</span>
+                                    </li>
+                                    <li class="checklist-li" id="staff-chk-thyroid" onclick="toggleStaffDrawCheck('thyroid')">
+                                        <div class="custom-chk">
+                                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        </div>
+                                        <span>TSH Thyroid Swab</span>
+                                    </li>
+                                    <li class="checklist-li" id="staff-chk-lipid" onclick="toggleStaffDrawCheck('lipid')">
+                                        <div class="custom-chk">
+                                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        </div>
+                                        <span>Lipid Profile Blood Tube</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="form-field">
+                                <label for="staff-sample-status">Courier Dispatch Status</label>
+                                <select id="staff-sample-status" class="form-input" style="background:#090d16; border:1px solid var(--border-color); color:white; padding:0.75rem; width:100%; border-radius:4px; font-family:var(--font-sans);">
+                                    <option value="Collected">Collected (Awaiting Pickup)</option>
+                                    <option value="In Transit">In Transit (Chilled Container)</option>
+                                    <option value="Delivered to Lab">Delivered to Central Lab</option>
+                                </select>
+                            </div>
+
+                            <button type="button" class="btn btn-primary" id="btn-staff-submit-report" style="width:100%; margin-top: 1.5rem;">
+                                Submit Field Visit Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 5: Doctor Diagnostics Board -->
+            <section id="view-doctor" class="view-section">
+                <div class="dashboard-header">
+                    <div>
+                        <span class="step-meta">Physician Diagnostics Board</span>
+                        <h2 class="step-heading">Clinical Examination Console</h2>
+                    </div>
+                    <button class="btn-logout" id="btn-doctor-logout" title="Exit portal">Sign Out</button>
+                </div>
+
+                <!-- SUB-VIEW 5A: Doctor Patient Registry Directory (Default) -->
+                <div id="doctor-patient-list-container" class="dashboard-grid" style="width: 100%;">
+                    <!-- Search/Filters toolbar -->
+                    <div class="directory-toolbar" style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 0.5rem;">
+                        <span class="assess-label">Filter Registry by Status</span>
+                        <div class="auth-role-tabs" style="margin-bottom: 0.5rem; border-bottom: none;">
+                            <button class="auth-role-tab active doc-filter-btn" data-filter="all">All Patients</button>
+                            <button class="auth-role-tab doc-filter-btn" data-filter="Optimal / Normal">Normal</button>
+                            <button class="auth-role-tab doc-filter-btn" data-filter="Under Observation">Observation</button>
+                            <button class="auth-role-tab doc-filter-btn" data-filter="Active Treatment Required">Action Required</button>
+                        </div>
+                    </div>
+
+                    <div class="dash-card">
+                        <div class="reports-table-wrapper">
+                            <table class="reports-table">
+                                <thead>
+                                    <tr>
+                                        <th>Patient ID</th>
+                                        <th>Zip</th>
+                                        <th>Vitals Check</th>
+                                        <th>Treatment Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="doctor-patient-registry-body">
+                                    <!-- Populated via app.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUB-VIEW 5B: Selected Patient Diagnostic workspace -->
+                <div id="doctor-workspace-container" class="dashboard-grid" style="display: none;">
+                    <button class="btn-logout" id="btn-doctor-back-to-list" style="border-color: var(--primary); color: var(--primary); align-self: flex-start;">
+                        &larr; Back to Patient Registry
+                    </button>
+                    
+                    <div class="dash-col">
+                        <!-- Patient Metrics Summary -->
+                        <div class="dash-card">
+                            <div class="dash-card-title" id="doc-active-patient-header">Patient File Review: Eleanor Vance</div>
+                            <div class="vitals-stats" style="margin-bottom: 0.5rem;">
+                                <div class="vital-stat-box" style="padding: 0.65rem;">
+                                    <span class="vital-name">BP (mmHg)</span>
+                                    <strong id="doc-view-bp" style="font-size:1rem;">118/76</strong>
+                                </div>
+                                <div class="vital-stat-box" style="padding: 0.65rem;">
+                                    <span class="vital-name">Heart Rate</span>
+                                    <strong id="doc-view-hr" style="font-size:1rem;">68 bpm</strong>
+                                </div>
+                                <div class="vital-stat-box" style="padding: 0.65rem;">
+                                    <span class="vital-name">Temp (°F)</span>
+                                    <strong id="doc-view-temp" style="font-size:1rem;">98.6°F</strong>
+                                </div>
+                            </div>
+                            <p class="schedule-desc" style="font-size:0.8rem;" id="doc-vitals-timestamp">Vitals authorized by Nurse Sarah Jenkins, RN.</p>
+                        </div>
+
+                        <!-- Diagnosis Assessment Form -->
+                        <div class="dash-card">
+                            <div class="dash-card-title">Diagnostic Assessment Editor</div>
+                            
+                            <!-- Template dropdown selector -->
+                            <div class="form-field">
+                                <label for="doc-template-select">Apply Clinical Template Profile</label>
+                                <select id="doc-template-select" class="form-input" style="background:#090d16; border:1px solid var(--border-color); color:white; padding:0.75rem; border-radius:4px; font-family:var(--font-sans);">
+                                    <option value="none">-- Select Template --</option>
+                                    <option value="fever">Fever / Infection Profile</option>
+                                    <option value="hypertension">Hypertension Profile</option>
+                                    <option value="cholesterol">Hyperlipidemia Profile</option>
+                                </select>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="doc-diagnosis-input">Physician Diagnosis Notes</label>
+                                <textarea id="doc-diagnosis-input" placeholder="Enter clinical assessment..." rows="4" style="background:#090d16; border:1px solid var(--border-color); color:white; padding:0.75rem; border-radius:4px; font-family:var(--font-sans); outline:none; resize:none;"></textarea>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="doc-patient-status-select">Patient Health Status</label>
+                                    <select id="doc-patient-status-select" class="form-input" style="background:#090d16; border:1px solid var(--border-color); color:white; padding:0.75rem; border-radius:4px; font-family:var(--font-sans);">
+                                        <option value="Optimal / Normal">Optimal / Normal</option>
+                                        <option value="Under Observation">Under Observation</option>
+                                        <option value="Active Treatment Required">Active Treatment Required</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="doc-prescriptions-input">Prescribed Medications</label>
+                                <textarea id="doc-prescriptions-input" placeholder="e.g. Amoxicillin 500mg, Paracetamol 650mg..." rows="2" style="background:#090d16; border:1px solid var(--border-color); color:white; padding:0.75rem; border-radius:4px; font-family:var(--font-sans); outline:none; resize:none;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dash-col">
+                        <!-- Lab Report Metric compiler -->
+                        <div class="dash-card">
+                            <div class="dash-card-title">Compile & Publish Lab Report</div>
+                            <div class="form-field">
+                                <label for="doc-report-select">Target Lab Report</label>
+                                <select id="doc-report-select" class="form-input" style="background:#090d16; border:1px solid var(--border-color); color:white; padding:0.75rem; border-radius:4px; font-family:var(--font-sans);">
+                                    <option value="cbc">Complete Blood Count (CBC)</option>
+                                    <option value="thyroid">Thyroid Function Panel (TSH)</option>
+                                    <option value="lipid">Lipid Profile (Cholesterol)</option>
+                                </select>
+                            </div>
+
+                            <!-- Dynamic Metric Inputs Area -->
+                            <div id="doc-metric-inputs-area">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+
+                            <button type="button" class="btn btn-primary" id="btn-doc-publish" style="width:100%; margin-top: 1.5rem;">
+                                Publish Diagnosis & Reports
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Right Panel: Interactive 3D Canvas -->
+        <div class="canvas-container">
+            <canvas id="webgl-canvas"></canvas>
+            
+            <div class="canvas-details-overlay">
+                <div class="canvas-title" id="three-scene-title">Overview: Neural Health Sphere</div>
+                <div class="canvas-nav-overlay" id="three-scroller" style="display: none;">
+                    <button class="three-node-btn active" data-scene="0">01</button>
+                    <button class="three-node-btn" data-scene="1">02</button>
+                    <button class="three-node-btn" data-scene="2">03</button>
+                    <button class="three-node-btn" data-scene="3">04</button>
+                    <button class="three-node-btn" data-scene="4">05</button>
+                </div>
+            </div>
+
+            <div class="interaction-hint">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="m15 9-3-3-3 3M15 15l-3 3-3-3"></path>
+                </svg>
+                <span>Rotate mesh camera via mouse interaction</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script imports -->
+    <script type="module" src="three-app.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
